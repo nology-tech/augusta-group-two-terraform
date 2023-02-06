@@ -3,9 +3,9 @@
 ## Contributors
 
 - [Adam]()
-- [Airidas]()
-- [Mehdi]()
-- [Risper](https://github.com/djava387)
+- [Airidas](https://github.com/Adaz99)
+- [Mehdi](https://github.com/LemonRiz)
+- [Risper]()
 - [Theo]()
 
 - Coach : [Charlie](https://github.com/Charlie-robin)
