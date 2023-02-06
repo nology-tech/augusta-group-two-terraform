@@ -2,7 +2,7 @@
 
 ## Contributors
 
-- [Adam]()
+- [Adam](https://github.com/adampaulsackfield)
 - [Risper](https://github.com/djava387)
 - [Airidas](https://github.com/Adaz99)
 - [Mehdi](https://github.com/LemonRiz)
