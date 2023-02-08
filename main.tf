@@ -1,5 +1,5 @@
 provider "aws" {
-  region="us-east-1"
+  region="us-east-2"
 }
 
 # Create our VPC
@@ -55,7 +55,7 @@ module "application-tier" {
   route_table_id          = "${aws_route_table.group-two-rt.id}"
   cidr_block              = "10.16.0.0/24"
   user_data               = templatefile("./scripts/app_user_data.sh", { mongodb_ip=module.db-tier.private_ip })
-  ami_id                  = "need the ami" # Need the ami
+  ami_id                  = "ami-092a4dc7e472f8bc6" 
   map_public_ip_on_launch = true
 
   ingress = [
