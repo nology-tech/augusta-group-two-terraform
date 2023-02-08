@@ -46,7 +46,7 @@ resource "aws_instance" "db" {
   user_data = "${var.user_data}"
   subnet_id = "${aws_subnet.group-two-db-subnet.id}"
   vpc_security_group_ids = ["${aws_security_group.group-two-sg-db-group.id}"]
-  key_name               =  "" # Create the aws key
+  key_name               =  "group-two"
 
   tags = {
     Name = "${var.name}"
