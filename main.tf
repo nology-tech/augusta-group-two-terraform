@@ -11,7 +11,7 @@ variable "region" {
 }
 
 provider "aws" {
-  region = "us-east-2"
+  region = var.region
   access_key = var.AWS_Access_key_ID
   secret_key = var.AWS_Secret_access_key
 }
