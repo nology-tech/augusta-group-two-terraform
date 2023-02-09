@@ -3,3 +3,4 @@ node_modules
 *.tfstate.*
 *.lock.*
 notes.java
+terraform.tfvars
