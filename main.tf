@@ -3,9 +3,9 @@ variable "region" {
 }
 
 provider "aws" {
-  region = var.region
-  access_key = var.AWS_Access_key_ID
-  secret_key = var.AWS_Secret_access_key
+  region = "aws_region"
+  access_key = "AWS_Access_key_ID"
+  secret_key = "AWS_Secret_access_key"
 }
 
 # Create our VPC
