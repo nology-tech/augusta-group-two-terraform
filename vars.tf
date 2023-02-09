@@ -1,7 +1,7 @@
-variable "AWS_secret_access_key" {
-  description = "The VPC ID in AWS"
+variable "AWS_Secret_access_key" {
+  description = "The VPC ID in AWS" # change
 }
 
-variable "AWS_access_key_ID" {
-  description = "The VPC ID in AWS"
+variable "AWS_Access_key_ID" {
+  description = "The VPC ID in AWS" # change
 }
