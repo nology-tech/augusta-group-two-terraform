@@ -52,3 +52,5 @@ resource "aws_instance" "db" {
     Name = "${var.name}"
   }
 }
+
+
