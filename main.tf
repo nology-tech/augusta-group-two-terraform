@@ -7,7 +7,7 @@ variable "AWS_Secret_access_key" {
 }
 
 variable "region" {
-  defualt = "us-east-2"
+  default = "us-east-2"
 }
 
 provider "aws" {
