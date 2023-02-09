@@ -1,15 +1,5 @@
-variable "AWS_Access_key_ID" {
-  description = "AWS access key ID."
-}
-
-variable "AWS_Secret_access_key" {
-  description = "AWS secret access key."
-}
-
 provider "aws" {
-  region = var.region
-  access_key = var.AWS_Access_key_ID
-  secret_key = var.AWS_Secret_access_key
+  region = "us-east-2"
 }
 
 # Create our VPC
