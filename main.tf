@@ -1,3 +1,7 @@
+variable "region" {
+  type = string
+}
+
 provider "aws" {
   region = var.region
   access_key = var.AWS_Access_key_ID
