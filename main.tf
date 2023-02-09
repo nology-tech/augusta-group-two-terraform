@@ -6,6 +6,10 @@ variable "AWS_Secret_access_key" {
   type = string
 }
 
+variable "region" {
+  defualt = "us-east-2"
+}
+
 provider "aws" {
   region = "us-east-2"
   access_key = var.AWS_Access_key_ID
