@@ -1,7 +1,7 @@
 provider "aws" {
-  region = "us-east-2"
   access_key = var.AWS_Access_key_ID
-  
+  secret_key = var.AWS_Secret_access_key
+  region     = var.aws_region
 }
 
 # Create our VPC
