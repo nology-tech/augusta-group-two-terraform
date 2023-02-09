@@ -1,0 +1,23 @@
+---
+- name: Test Deployment
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    - name: Check if the service is running
+      shell: service {{ service_name }} status
+      register: result
+      ignore_errors: true
+
+    - name: Report the result
+      fail:
+        msg: "Service {{ service_name }} is not running."
+      when: result.rc != 0
+      changed_when: false
+      notify:
+        - log the result
+
+  handlers:
+    - name: log the result
+      debug:
+        var: result

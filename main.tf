@@ -35,7 +35,7 @@ module "db-tier" {
   route_table_id = "${aws_vpc.group-two-application-deployment.main_route_table_id}"
   cidr_block              = "10.16.1.0/24" 
   user_data               = templatefile("./scripts/database_user_data.sh", {})
-  ami_id                  = "need the ami" # Need the ami
+  ami_id                  = "ami-02fcafe36f7b51e84" 
   map_public_ip_on_launch = false
 
   ingress = [
