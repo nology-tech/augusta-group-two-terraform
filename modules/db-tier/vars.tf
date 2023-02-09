@@ -20,7 +20,10 @@ variable "user_data" {
 
 variable "ami_id" {
   description = "ID for AMI in AWS"
+  
 }
+
+
 
 variable "map_public_ip_on_launch" {
   default = false
@@ -32,3 +35,7 @@ variable "ingress" {
   description = "Sets the access to the network, port, and the protocol"
 }
 
+
+
+
+  

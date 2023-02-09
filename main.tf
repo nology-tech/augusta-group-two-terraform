@@ -28,6 +28,28 @@ resource "aws_route_table" "group-two-rt" {
   }
 }
 
+data "aws_ami" "db-ami" {
+
+most_recent = true 
+
+filter {
+    name   = "name"
+    values = ["augusta-baked-image-database-group-two-database*"]
+  }
+
+filter {
+  name = "state"
+  values = ["available"]
+}
+
+filter {
+    name = "root-device-type"
+    values = ["ebs"]
+}
+
+}
+
+
 module "db-tier" {
   name           = "group-two-database"
   source         = "./modules/db-tier"
@@ -35,7 +57,7 @@ module "db-tier" {
   route_table_id = "${aws_vpc.group-two-application-deployment.main_route_table_id}"
   cidr_block              = "10.16.1.0/24" 
   user_data               = templatefile("./scripts/database_user_data.sh", {})
-  ami_id                  = "need the ami" # Need the ami
+  ami_id                  = "${data.aws_ami.db-ami.id}"  
   map_public_ip_on_launch = false
 
   ingress = [
@@ -48,6 +70,27 @@ module "db-tier" {
   ]
 }
 
+
+data "aws_ami" "app-ami" {
+  most_recent = true
+
+
+filter {
+    name   = "name"
+    values = ["augusta-baked-image-application-group-two-application*"]
+  }
+
+  filter {
+    name = "state"
+    values = ["available"]
+  }
+
+    filter {
+    name   = "root-device-type"
+    values = ["ebs"]
+  }
+}
+
 module "application-tier" {
   name                    = "group-two-app"
   source                  = "./modules/application-tier"
@@ -55,7 +98,7 @@ module "application-tier" {
   route_table_id          = "${aws_route_table.group-two-rt.id}"
   cidr_block              = "10.16.0.0/24"
   user_data               = templatefile("./scripts/app_user_data.sh", { mongodb_ip=module.db-tier.private_ip })
-  ami_id                  = "ami-092a4dc7e472f8bc6" 
+  ami_id                  = "${data.aws_ami.app-ami.id}" 
   map_public_ip_on_launch = true
 
   ingress = [
