@@ -6,10 +6,6 @@ variable "AWS_Secret_access_key" {
   type = string
 }
 
-variable "region" {
-  default = "us-east-2"
-}
-
 provider "aws" {
   region = var.region
   access_key = var.AWS_Access_key_ID
