@@ -8,4 +8,5 @@ variable "AWS_Access_key_ID" {
 
 variable "aws_region" {
   description = "The VPC ID in AWS" # change
+  default = "us-east-2"
 }
