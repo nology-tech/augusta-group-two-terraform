@@ -1,5 +1,4 @@
-node_modules
 .terraform
-*.tfstate.*
-*.lock.*
-notes.java
+*tfstate*
+*.lock
+.tfstate

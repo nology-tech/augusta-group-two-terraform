@@ -18,19 +18,20 @@ Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment; filename="userdata.txt"
 
 #!/bin/bash
-echo export DB_PATH=${mongodb_ip} >> /etc/profile
-echo export NODE_ENV=prod >> /etc/profile
 
-ex /etc/systemd/system/nodeapp.service <<eof                                                                                                                  
-5 insert
-Environment=NODE_ENV=prod
-Environment=DB_PATH=${mongodb_ip}
+echo ---------- Update the Snake Game server_name to this IP address --------------
+sudo sed "s/IP_ADDRESS/$(curl -4 icanhazip.com)/" /home/ubuntu/env/snake/snake-proxy.conf > /etc/nginx/sites-available/snake.game
+
+DB_IP="${db_ip}"
+
+ex /var/www/snake.game/html/scripts/Game.js <<eof                                                                                                                                                 
+6 insert
+const URL = "http://${db_ip}:5550/api/scores"
 .
 xit
 eof
 
-systemctl daemon-reload
-systemctl start nodeapp
-systemctl enable nodeapp
-systemctl status nodeapp
+echo ---------- Reload Nginx --------------
+sudo systemctl reload nginx.service
+
 --//--
