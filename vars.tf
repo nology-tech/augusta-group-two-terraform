@@ -1,12 +1,12 @@
 variable "AWS_Secret_access_key" {
-  description = "The VPC ID in AWS" # change
+  description = "The AWS secret key"
 }
 
 variable "AWS_Access_key_ID" {
-  description = "The VPC ID in AWS" # change
+  description = "The AWS secret key id"
 }
 
 variable "aws_region" {
-  description = "The VPC ID in AWS" # change
+  description = "AWS region"
   default = "us-east-2"
 }

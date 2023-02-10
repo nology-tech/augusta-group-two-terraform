@@ -10,13 +10,8 @@
 - Add the AMIs for the app and db machine
 - Change the IP address in playbooks/inventory.txt
 
-- Added empty test file
-
-# Things to change once available
-
-- Complete test file
-
-- Add each groupmembers IP addresses in main (application-tier, ingress)
+- Set up dynamic ami's for app and db
+- Add each groupmembers IP addresses in main
 
 ## Contributors
 
