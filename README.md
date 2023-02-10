@@ -3,14 +3,19 @@
 # Things changed
 
 - Created aws-key 'group-two.pem' and added it into the appropriate files
-- Set the region to US-East-2 (Oregon)
+- Set the region to US-East-2 (Ohio)
 - Set cidr blocks to 10.16.0.0
 - used 'group-two' for naming
 
-# Things to change once available
-
 - Add the AMIs for the app and db machine
 - Change the IP address in playbooks/inventory.txt
+
+- Added empty test file
+
+# Things to change once available
+
+- Complete test file
+
 - Add each groupmembers IP addresses in main (application-tier, ingress)
 
 ## Contributors

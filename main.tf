@@ -39,6 +39,28 @@ resource "aws_route_table" "group-two-rt" {
   }
 }
 
+data "aws_ami" "db-ami" {
+
+most_recent = true 
+
+filter {
+    name   = "name"
+    values = ["augusta-baked-image-application-group-two-database*"]
+  }
+
+filter {
+  name = "state"
+  values = ["available"]
+}
+
+filter {
+    name = "root-device-type"
+    values = ["ebs"]
+}
+
+}
+
+
 module "db-tier" {
   name           = "group-two-database"
   source         = "./modules/db-tier"
@@ -46,7 +68,7 @@ module "db-tier" {
   route_table_id = "${aws_vpc.group-two-application-deployment.main_route_table_id}"
   cidr_block              = "10.16.1.0/24" 
   user_data               = templatefile("./scripts/database_user_data.sh", {})
-  ami_id                  = "ami-048630f40a874227f" # Need the ami
+  ami_id                  = "${data.aws_ami.db-ami.id}" # Need the ami
   map_public_ip_on_launch = false
 
   ingress = [
@@ -55,18 +77,42 @@ module "db-tier" {
       to_port = 27017
       protocol = "tcp"
       cidr_blocks = "${module.application-tier.subnet_cidr_block}"
+    },
+     {
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      cidr_blocks = "0.0.0.0/0" # TODO Currently open to all, will create an array for each memeber (add 32 to the end)
     }
   ]
 }
 
+data "aws_ami" "app-ami" {
+  most_recent = true
+
+filter {
+    name   = "name"
+    values = ["augusta-baked-image-application-group-two-application*"]
+  }
+
+  filter {
+    name = "state"
+    values = ["available"]
+  }
+
+    filter {
+    name   = "root-device-type"
+    values = ["ebs"]
+  }
+}
+
 module "application-tier" {
-  name                    = "group-two-app"
   source                  = "./modules/application-tier"
   vpc_id                  = "${aws_vpc.group-two-application-deployment.id}"
   route_table_id          = "${aws_route_table.group-two-rt.id}"
   cidr_block              = "10.16.0.0/24"
   user_data               = templatefile("./scripts/app_user_data.sh", { mongodb_ip=module.db-tier.private_ip })
-  ami_id                  = "ami-044b73d2010f03651" 
+  ami_id                  = "${data.aws_ami.app-ami.id}" 
   map_public_ip_on_launch = true
 
   ingress = [
@@ -80,7 +126,7 @@ module "application-tier" {
       from_port   = 22
       to_port     = 22
       protocol    = "tcp"
-      cidr_blocks = "0.0.0.0/0" # Currently open to all, will create an array for each memeber (add 32 to the end)
+      cidr_blocks = "0.0.0.0/0" # TODO Currently open to all, will create an array for each memeber (add 32 to the end)
     }
   ]
 }

@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 node_modules
 .terraform
 *.tfstate.*
 *.lock.*
 notes.java
+=======
+.terraform
+*tfstate*
+*.lock
+.tfstate
+>>>>>>> 1da8b4b8fe14e672178363aad304757af0d2891d
