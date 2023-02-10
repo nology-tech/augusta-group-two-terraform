@@ -112,7 +112,7 @@ module "application-tier" {
       from_port   = 22
       to_port     = 22
       protocol    = "tcp"
-      cidr_blocks = "0.0.0.0/0" # Currently open to all, will create an array for each memeber (add 32 to the end)
+      cidr_blocks = ["5.80.197.109", "82.10.84.199", "82.16.101.203", "95.150.188.127", "81.79.43.81"]
     }
   ]
 }
