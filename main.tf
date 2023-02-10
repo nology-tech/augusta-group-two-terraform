@@ -46,7 +46,7 @@ module "db-tier" {
   route_table_id = "${aws_vpc.group-two-application-deployment.main_route_table_id}"
   cidr_block              = "10.16.1.0/24" 
   user_data               = templatefile("./scripts/database_user_data.sh", {})
-  ami_id                  = "ami-0b83872ae66337ad0" # Need the ami
+  ami_id                  = "ami-048630f40a874227f" # Need the ami
   map_public_ip_on_launch = false
 
   ingress = [
@@ -66,7 +66,7 @@ module "application-tier" {
   route_table_id          = "${aws_route_table.group-two-rt.id}"
   cidr_block              = "10.16.0.0/24"
   user_data               = templatefile("./scripts/app_user_data.sh", { mongodb_ip=module.db-tier.private_ip })
-  ami_id                  = "ami-054280fbace6d9cad" 
+  ami_id                  = "ami-044b73d2010f03651" 
   map_public_ip_on_launch = true
 
   ingress = [
