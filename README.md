@@ -11,10 +11,7 @@
 - Change the IP address in playbooks/inventory.txt
 
 - Set up dynamic ami's for app and db
-
-# Things to change once available
-
-- Add each groupmembers IP addresses in main (application-tier, ingress)
+- Add each groupmembers IP addresses in main
 
 ## Contributors
 
