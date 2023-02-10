@@ -127,7 +127,7 @@ module "application-tier" {
       from_port   = 22
       to_port     = 22
       protocol    = "tcp"
-      cidr_blocks = ["5.80.197.109", "82.10.84.199", "82.16.101.203", "95.150.188.127", "81.79.43.81"]
+      cidr_blocks = "0.0.0.0/0"
     }
   ]
 }
